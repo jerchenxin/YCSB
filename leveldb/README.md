@@ -7,17 +7,26 @@ This is a YCSB database abstraction for LevelDB.
 Copy the jar.
 
 ```shell
+mkdir ${YCSB_HOME}/leveldb/lib
 cp ${LEVELDBJNI_HOME}/leveldb_jni.jar ${YCSB_HOME}/leveldb/lib
 ```
 
 ## Build the LevelDB binding.
 
 ```shell
-mvn -pl com.yahoo.ycsb:leveldb-binding -am clean package
+mvn -pl site.ycsb:leveldb-binding -am clean package
+```
+
+## Env for leveldb
+```shell
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${LEVELDB_HOME}/build
+export LD_LIBRARY_PATH
 ```
 
 ## Run the YCSB workloads. Example command
 
 ```shell
-java -cp leveldb/target/*:leveldb/target/dependency/*:leveldb/lib/*: com.yahoo.ycsb.Client -load -db com.yahoo.ycsb.db.LevelDBClient -P workloads/workloada
+# need python2.7
+./bin/ycsb load leveldb -s -P workloads/workloada
+./bin/ycsb run leveldb -s -P workloads/workloada
 ```
