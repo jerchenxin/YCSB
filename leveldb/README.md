@@ -19,8 +19,7 @@ mvn -pl site.ycsb:leveldb-binding -am clean package
 
 ## Env for leveldb
 ```shell
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${LEVELDB_HOME}/build
-export LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${LEVELDB_HOME}/build
 ```
 
 ## Run the YCSB workloads. Example command
