@@ -1,10 +1,10 @@
-package com.yahoo.ycsb.db;
+package site.ycsb.db;
 
 import com.xchen.LevelDB;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
+// import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -12,15 +12,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
-import java.util.concurrent.atomic.AtomicInteger;
+// import java.util.concurrent.atomic.AtomicInteger;
 
-import com.yahoo.ycsb.ByteIterator;
-import com.yahoo.ycsb.DB;
-import com.yahoo.ycsb.DBException;
-import com.yahoo.ycsb.Status;
-import com.yahoo.ycsb.StringByteIterator;
+import site.ycsb.*;
 
-public class PebblesDbClient extends DB {
+// import com.yahoo.ycsb.ByteIterator;
+// import com.yahoo.ycsb.DB;
+// import com.yahoo.ycsb.DBException;
+// import com.yahoo.ycsb.Status;
+// import com.yahoo.ycsb.StringByteIterator;
+
+/**
+ * The YCSB binding for <a href="https://github.com/google/leveldb">LevelDB</a>.
+ */
+public class LevelDBClient extends DB {
 
   private static LevelDB db = null;
 
@@ -28,8 +33,8 @@ public class PebblesDbClient extends DB {
     if (db == null) {
     //   LevelDB.Options options = new LevelDB.Options();
       try {
-        db = new new LevelDB("leveldb_database");
-      } catch (IOException e) {
+        db = new LevelDB("leveldb_database");
+      } catch (Exception e) {
         System.out.println("Failed to open database");
         e.printStackTrace();
       }
@@ -68,12 +73,12 @@ public class PebblesDbClient extends DB {
    */
   @Override
   public void cleanup() throws DBException {
-      try {
-        db.close();
-      } catch (IOException e) {
-        System.out.println("Failed to close db");
-        e.printStackTrace();
-      }
+    try {
+      db.close();
+    } catch (Exception e) {
+      System.out.println("Failed to close db");
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -252,7 +257,7 @@ public class PebblesDbClient extends DB {
     } finally {
       try {
         iterator.close();
-      } catch (IOException e) {
+      } catch (Exception e) {
         System.out.println("Failed to close iterator");
         e.printStackTrace();
       }

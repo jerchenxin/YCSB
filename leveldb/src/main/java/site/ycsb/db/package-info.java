@@ -18,6 +18,6 @@
 /**
  * The YCSB binding for <a href="https://github.com/google/leveldb">LevelDB</a>.
  */
-package com.yahoo.ycsb.db;
+package site.ycsb.db;
 
 
